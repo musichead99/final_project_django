@@ -1,0 +1,18 @@
+<h1>{{ post.title }}</h1>
+<div>
+    {{ post.content }}
+</div>
+<div>
+    <ul>
+        {% for comment in post.comment_set.all %}
+            <li>
+                {{ comment.content }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<form action="{% url 'myPage:comment_create' post.id %}" method="POST">
+    {% csrf_token %}
+    <textarea name="content" id="content" rows="15"></textarea>
+    <input type="submit" value="댓글등록">
+</form>
