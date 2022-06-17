@@ -1,6 +1,4 @@
 from django.urls import path
-from django.conf.urls.static import static
-from config import settings
 
 from . import views
 
@@ -13,6 +11,3 @@ urlpatterns = [
     path('post/create/', views.post_create, name='post_create'),
     path('post/download/<int:post_id>', views.audio_download, name='audio_download'),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

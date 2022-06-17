@@ -6,24 +6,25 @@
     <h2 class="border-bottom py-2">{{ post.title }}</h2>
     <div class="card my-3">
         <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;">{{ post.content }}</div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2">
                     {{ post.create_date }}
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- 파일 -->
-    {% if post.audio %}
-    <div class="card my-3">
-        <div class="card-body">
+            <br>
+            <div class="card-text" style="white-space: pre-line;">{{ post.content }}</div>
+            <!-- 파일 -->
+            {% if post.audio %}
+            <div style="white-space: pre-line;">
+                <br>
+                <audio src="{{ post.audio.url }}" controls="controls" ></audio>
+            </div>
             <div class="d-flex justify-content-end">
                 첨부파일 :&nbsp;<a href="{% url 'myPage:audio_download' post.id %}" class="text-info">{{ post.audio }}</a>
             </div>
+            {% endif %}
         </div>
     </div>
-    {% endif %}
     <!-- 댓글 -->
     <h5 class="border-bottom my-3 py-2">{{post.comment_set.count}}개의 댓글이 있습니다.</h5>
     {% for comment in post.comment_set.all %}

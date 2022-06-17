@@ -25,7 +25,6 @@ def post_create(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            print(request.FILES['audio'])
             post.create_date = timezone.now()
             post.save()
             return redirect('myPage:index')
