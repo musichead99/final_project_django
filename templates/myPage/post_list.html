@@ -1,9 +1,32 @@
-{% if post_list %}
-    <ul>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+
+<div class="container my-3">
+    <table class="table table-hover">
+        <thead>
+        <tr class="bg-primary">
+            <th class="text-light">번호</th>
+            <th class="text-light">제목</th>
+            <th class="text-light">작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if post_list %}
         {% for post in post_list %}
-            <li><a href="{% url 'myPage:detail' post.id %}">{{ post.title }}</a></li>
+        <tr class="table-primary">
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'myPage:detail' post.id %}">{{ post.title }}</a>
+            </td>
+            <td>{{ post.create_date }}</td>
+        </tr>
         {% endfor %}
-    </ul>
-{% else %}
-    <p>포스트가 없습니다.</p>
-{% endif %}
+        {% else %}
+        <tr>
+            <td colspan="3">포스트가 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <a href="{% url 'myPage:post_create' %}" class="btn btn-primary">new</a>
+</div>

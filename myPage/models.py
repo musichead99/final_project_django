@@ -1,11 +1,11 @@
-from tkinter import CASCADE
 from django.db import models
+from django.core.validators import FileExtensionValidator 
 
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    audio = models.CharField(max_length=200, blank=True, default='')
+    audio = models.FileField(null=True, upload_to="", blank=True, validators=[FileExtensionValidator(['mp3', 'wav', 'mid'])])
     create_date = models.DateTimeField()
     
     def __str__(self):
