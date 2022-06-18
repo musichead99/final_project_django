@@ -1,5 +1,5 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+{% extends 'base.html' %}
+{% block content %}
 
 <div class="container">
     <h5 class="my-3 border-bottom pb-2">등록</h5>
@@ -9,3 +9,5 @@
         <button type="submit" class="btn btn-primary">저장하기</button>
     </form>
 </div>
+
+{% endblock %}
